@@ -1,0 +1,86 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "CarCompanyBillingContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "CarCompanyBilling",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[car]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[customer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[department]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[employee]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[inventory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[job]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[part]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[sales_invoice]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[vendor]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[warehouse]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[zip]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": "desktop-ibpq9cr.CarCompanyBilling.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
