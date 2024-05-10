@@ -3,15 +3,16 @@
 using System;
 using System.Collections.Generic;
 
-namespace CarCompanyBilling.Models
+namespace CarCompanyBilling.Models.DataLayer
 {
-    public partial class Inventory
+    public partial class Part
     {
         public decimal CarId { get; set; }
-        public decimal WarehouseId { get; set; }
-        public string Availability { get; set; }
+        public decimal VendorId { get; set; }
+        public string PartDescription { get; set; }
+        public decimal PartCost { get; set; }
 
         public virtual Car Car { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        public virtual Vendor Vendor { get; set; }
     }
 }

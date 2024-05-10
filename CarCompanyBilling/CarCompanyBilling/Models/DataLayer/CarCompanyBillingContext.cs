@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CarCompanyBilling.Models
+namespace CarCompanyBilling.Models.DataLayer
 {
     public partial class CarCompanyBillingContext : DbContext
     {

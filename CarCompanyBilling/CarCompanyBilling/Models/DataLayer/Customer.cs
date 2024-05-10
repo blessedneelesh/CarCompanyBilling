@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CarCompanyBilling.Models
+namespace CarCompanyBilling.Models.DataLayer
 {
     public partial class Customer
     {

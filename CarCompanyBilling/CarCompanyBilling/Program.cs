@@ -1,4 +1,5 @@
-using CarCompanyBilling.Models;
+
+using CarCompanyBilling.Models.DataLayer;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
