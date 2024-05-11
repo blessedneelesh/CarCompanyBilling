@@ -30,7 +30,7 @@ namespace CarCompanyBilling.Models.DataLayer
         public virtual DbSet<Warehouse> Warehouses { get; set; }
         public virtual DbSet<Zip> Zips { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+/*        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -38,7 +38,7 @@ namespace CarCompanyBilling.Models.DataLayer
                 optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=CarCompanyBilling;Integrated Security=True");
             }
         }
-
+*/
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Car>(entity =>

@@ -13,7 +13,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//builder.Services.AddScoped<SalesInvoiceDoa>();
+builder.Services.AddDbContext<CarCompanyBillingContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
+    sqlServerOptionsAction: sqlOptions => // by neelesh transient failure because of no db.
+    {
+        sqlOptions.EnableRetryOnFailure();
+    }));
+
+
+builder.Services.AddScoped<SalesInvoiceDoa>();
 
 var app = builder.Build();
 

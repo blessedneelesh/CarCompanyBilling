@@ -10,9 +10,9 @@ namespace CarCompanyBilling.Controllers
     public class SalesInvoiceController : ControllerBase
     {
         private readonly SalesInvoiceDoa _salesInvoiceDoa;
-        public SalesInvoiceController()
+        public SalesInvoiceController(SalesInvoiceDoa salesInvoiceDoa)
         {
-            _salesInvoiceDoa=new SalesInvoiceDoa();
+            _salesInvoiceDoa = salesInvoiceDoa;
         }
 
         [HttpGet]

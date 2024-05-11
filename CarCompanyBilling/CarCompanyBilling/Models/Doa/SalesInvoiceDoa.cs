@@ -8,9 +8,12 @@ namespace CarCompanyBilling.Models.Doa
     public class SalesInvoiceDoa
     {
         private readonly CarCompanyBillingContext _billingContext;
+        public SalesInvoiceDoa()
+        {
 
-        public SalesInvoiceDoa() {
-            _billingContext= new CarCompanyBillingContext();
+        }
+        public SalesInvoiceDoa(CarCompanyBillingContext billingContext) {
+            _billingContext= billingContext;
         }
 
         public List<SalesInvoiceDTO> GetAllSalesInvoice()
