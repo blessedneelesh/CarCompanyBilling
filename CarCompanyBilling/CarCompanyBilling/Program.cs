@@ -1,5 +1,6 @@
 
 using CarCompanyBilling.Models.DataLayer;
+using CarCompanyBilling.Models.Doa;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,13 +12,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<CarCompanyBillingContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
-    sqlServerOptionsAction: sqlOptions => // by neelesh transient failure because of no db.
-    {
-        sqlOptions.EnableRetryOnFailure();
-    }));
 
+//builder.Services.AddScoped<SalesInvoiceDoa>();
 
 var app = builder.Build();
 
