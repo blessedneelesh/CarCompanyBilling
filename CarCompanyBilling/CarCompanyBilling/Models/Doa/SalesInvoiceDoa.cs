@@ -8,14 +8,13 @@ namespace CarCompanyBilling.Models.Doa
     public class SalesInvoiceDoa
     {
         private readonly CarCompanyBillingContext _billingContext;
-        public SalesInvoiceDoa()
-        {
-
-        }
         public SalesInvoiceDoa(CarCompanyBillingContext billingContext) {
             _billingContext= billingContext;
         }
-
+        //_billingContext.SalesInvoices is of type IQueryable because DBset<SalesInvoice> implements IQueryable
+        //so, '' can use all the public methods of IQueryable interface. like LINQ operator select, where
+        // IQueryable + LINQ operator = expression tree.
+        // in order to execute expresstion tree
         public List<SalesInvoiceDTO> GetAllSalesInvoice()
         {
             var salesInvoiceLst = _billingContext.SalesInvoices.Select(n => new SalesInvoiceDTO
@@ -33,5 +32,6 @@ namespace CarCompanyBilling.Models.Doa
 
             return salesInvoiceLst;
         }
+
     }
 }

@@ -18,7 +18,6 @@ namespace CarCompanyBilling.Controllers
         [HttpGet]
         public ActionResult<List<SalesInvoiceDTO>> GetSalesInvoice() //ActionResult gives flexibility to return NotFound()
         {
-            System.Diagnostics.Debug.WriteLine(_salesInvoiceDoa + " NEE");
             var salesInvoice = _salesInvoiceDoa.GetAllSalesInvoice();
 
             return salesInvoice;

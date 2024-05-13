@@ -22,6 +22,7 @@ builder.Services.AddDbContext<CarCompanyBillingContext>(options =>
 
 
 builder.Services.AddScoped<SalesInvoiceDoa>();
+builder.Services.AddScoped<EmployeeDoa>();
 
 var app = builder.Build();
 
