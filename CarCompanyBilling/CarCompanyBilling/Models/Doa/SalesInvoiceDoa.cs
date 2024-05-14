@@ -33,5 +33,11 @@ namespace CarCompanyBilling.Models.Doa
             return salesInvoiceLst;
         }
 
+        public void CreateSalesInvoice(SalesInvoice salesInvoice)
+        {
+            _billingContext.SalesInvoices.Add(salesInvoice);
+            _billingContext.SaveChanges();
+        }
+
     }
 }
