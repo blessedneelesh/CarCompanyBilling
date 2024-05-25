@@ -1,6 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Navbar } from "../components";
-import { Invoice } from "../pages";
+import { Car, Customer, Employee, Invoice } from "../pages";
 
 const Routes = () => {
   const routesForPublic = [
@@ -18,15 +18,15 @@ const Routes = () => {
         },
         {
           path: "/employee",
-          element: <Invoice />,
+          element: <Employee />,
         },
         {
           path: "/customer",
-          element: <Invoice />,
+          element: <Customer />,
         },
         {
           path: "/cars",
-          element: <Invoice />,
+          element: <Car />,
         },
         {
           path: "/car-not-sold",

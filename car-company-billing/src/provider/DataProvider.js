@@ -16,6 +16,34 @@ export default function DataProvider({ children }) {
       console.log(e);
     }
   };
-  const value = { getSalesInvoice };
+
+  const getEmployees = async () => {
+    try {
+      var response = await Axios.get(API_URL + "Employee");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getCustomer = async () => {
+    try {
+      var response = await Axios.get(API_URL + "Customer/GetCustomer");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getCars = async () => {
+    try {
+      var response = await Axios.get(API_URL + "Car/GetCar");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const value = { getSalesInvoice, getEmployees, getCustomer, getCars };
+
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
