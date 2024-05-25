@@ -11,7 +11,7 @@ export default function DataProvider({ children }) {
   const getSalesInvoice = async () => {
     try {
       var response = await Axios.get(API_URL + "SalesInvoice");
-      console.log(response.data);
+      return response.data;
     } catch (e) {
       console.log(e);
     }

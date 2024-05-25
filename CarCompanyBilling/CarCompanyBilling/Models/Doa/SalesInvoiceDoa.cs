@@ -20,7 +20,7 @@ namespace CarCompanyBilling.Models.Doa
             var salesInvoiceLst = _billingContext.SalesInvoices.Select(n => new SalesInvoiceDTO
             {
                 invoice_id = n.InvoiceId,
-                date = n.Date,
+                date = n.Date.ToShortDateString(),
                 price = n.Price,
                 on_road_price = n.OnRoadPrice,
                 car_id = n.CarId,

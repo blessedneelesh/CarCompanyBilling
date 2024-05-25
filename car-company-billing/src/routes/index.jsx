@@ -1,5 +1,6 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { Invoice, Navbar } from "../components";
+import { Navbar } from "../components";
+import { Invoice } from "../pages";
 
 const Routes = () => {
   const routesForPublic = [
