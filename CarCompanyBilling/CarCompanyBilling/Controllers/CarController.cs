@@ -19,22 +19,33 @@ namespace CarCompanyBilling.Controllers
         public ActionResult<List<CarDTO>> GetCar() //ActionResult gives flexibility to return NotFound()
         {
             var car = _carDoa.GetAllCar();
-            return car;
+            return Ok(car);
         }
 
         [HttpGet]
         public ActionResult<List<CarDTO>> GetCarNeverSold() //ActionResult gives flexibility to return NotFound()
         {
             var car = _carDoa.GetAllCarNeverSold();
-            return car;
+            return Ok(car);
         }
 
         [HttpGet]
         public ActionResult<List<CarInventoryDTO>> GetCarInventory() //ActionResult gives flexibility to return NotFound()
         {
             var car = _carDoa.GetAllCarInventory();
-            return car;
+            return Ok(car);
         }
-        
+
+        [HttpGet]
+        public ActionResult<CustomerDTO> GetCarById([FromQuery] int carId)
+        {
+            var car = _carDoa.getCarById(carId);
+            if (car == null)
+            {
+                return NotFound();
+            }
+            return Ok(car);
+        }
+
     }
 }

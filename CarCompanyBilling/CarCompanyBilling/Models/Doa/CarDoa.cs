@@ -66,5 +66,21 @@ namespace CarCompanyBilling.Models.Doa
 
             return query;
         }
+
+        public CarDTO getCarById(int carId)
+        {
+            return _billingContext.Cars.Where(c => c.CarId == carId).Select(n => new CarDTO
+            {
+                CarId = n.CarId,
+                Make = n.Make,
+                Model = n.Model,
+                Color = n.Color,
+                Height = n.Height,
+                CarForSale = n.CarForSale,
+                CarLength = n.CarLength,
+                Width = n.Width,
+                EngineCc = n.EngineCc,
+            }).FirstOrDefault();
+        }
     }
 }

@@ -40,10 +40,7 @@ const Navbar = () => {
             {" "}
             <Link to="/car-not-sold">Car NOT Sold</Link>
           </Menu.Item>
-          <Menu.Item key="2">
-            {" "}
-            <Link to="/car-never-sold">Car NEVER Sold</Link>
-          </Menu.Item>
+
           <Menu.Item key="3">
             {" "}
             <Link to="/car-inventory">Car Inventory</Link>

@@ -1,5 +1,6 @@
 ﻿using CarCompanyBilling.Models.DataLayer;
 using CarCompanyBilling.Models.Dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarCompanyBilling.Models.Doa
 {
@@ -63,6 +64,43 @@ namespace CarCompanyBilling.Models.Doa
                  }).ToList();
 
             return query;
+        }
+
+        public List<TopCustomerDTO> GetTopCustomer()
+        {
+            var maxCount = _billingContext.SalesInvoices
+    .GroupBy(si => si.CustomerId)
+    .Select(g => g.Count())
+            .Max();
+
+            var query = _billingContext.Customers
+                .Join(_billingContext.SalesInvoices,
+                      c => c.CustomerId,
+                      si => si.CustomerId,
+                      (c, si) => new { c, si })
+                .GroupBy(x => new { x.c.CustomerId, x.c.FirstName, x.c.LastName })
+                .Select(g => new TopCustomerDTO
+                {
+                    CustomerId = g.Key.CustomerId,
+                    CustomerName = g.Key.FirstName + " " + g.Key.LastName,
+                    Count = g.Count()
+                })
+                .Where(result => result.Count == maxCount);
+
+            var results = query.ToList();
+            return results;
+        }
+
+        public CustomerDTO getCustomerById(int custId)
+        {
+            return _billingContext.Customers.Where(c=>c.CustomerId==custId).Select(n=>new CustomerDTO{
+                CustomerId = n.CustomerId,
+                FirstName = n.FirstName,
+                LastName = n.LastName,
+                PhoneNumber = n.PhoneNumber,
+                Address = n.Address,
+                Zip = n.Zip,
+            }).FirstOrDefault();
         }
         
     }

@@ -2,3 +2,8 @@ export { Invoice } from "./Invoice";
 export { Employee } from "./Employee";
 export { Car } from "./Car";
 export { Customer } from "./Customer";
+export { CarInventory } from "./CarInventory";
+export { CarNotSold } from "./CarNotSold";
+export { CustomerWithOrders } from "./CustomerWithOrders";
+export { CustomerWithoutOrders } from "./CustomerWithoutOrders";
+export { CustomerTop } from "./CustomerTop";

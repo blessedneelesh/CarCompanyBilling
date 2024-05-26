@@ -1,6 +1,16 @@
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { Navbar } from "../components";
-import { Car, Customer, Employee, Invoice } from "../pages";
+import {
+  Car,
+  CarInventory,
+  CarNotSold,
+  Customer,
+  CustomerTop,
+  CustomerWithOrders,
+  CustomerWithoutOrders,
+  Employee,
+  Invoice,
+} from "../pages";
 
 const Routes = () => {
   const routesForPublic = [
@@ -30,27 +40,24 @@ const Routes = () => {
         },
         {
           path: "/car-not-sold",
-          element: <Invoice />,
+          element: <CarNotSold />,
         },
-        {
-          path: "/car-never-sold",
-          element: <Invoice />,
-        },
+
         {
           path: "/car-inventory",
-          element: <Invoice />,
+          element: <CarInventory />,
         },
         {
           path: "/customer-orders",
-          element: <Invoice />,
+          element: <CustomerWithOrders />,
         },
         {
           path: "/customer-without-order",
-          element: <Invoice />,
+          element: <CustomerWithoutOrders />,
         },
         {
           path: "/top-customer",
-          element: <Invoice />,
+          element: <CustomerTop />,
         },
       ],
     },

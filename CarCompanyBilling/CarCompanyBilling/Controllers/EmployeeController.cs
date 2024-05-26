@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarCompanyBilling.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -15,11 +15,23 @@ namespace CarCompanyBilling.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<EmployeeDTO>> GetSalesInvoice() //ActionResult gives flexibility to return NotFound()
+        public ActionResult<List<EmployeeDTO>> GetAllEmployees() //ActionResult gives flexibility to return NotFound()
         {
             var employee = _employeeDoa.GetAllEmployee();
 
-            return employee;
+            return Ok(employee);
+        }
+
+        [HttpGet]
+        public ActionResult<EmployeeDTO> GetEmployeeById([FromQuery] int employeeId)
+        {
+            var employee = _employeeDoa.getEmployeeById(employeeId);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
         }
     }
 }
