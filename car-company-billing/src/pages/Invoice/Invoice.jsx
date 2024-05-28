@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table, Button } from "antd";
 import { Link } from "react-router-dom";
+import { DownloadOutlined } from "@ant-design/icons";
 const Invoice = () => {
   const [invoices, setInvoices] = useState("");
 
@@ -69,8 +70,18 @@ const Invoice = () => {
       ),
       key: "customer_id",
     },
+    {
+      title: "PDF",
+      render: (rec) => (
+        <>
+          <Button type="primary" icon={<DownloadOutlined />} size="small">
+            Download
+          </Button>
+        </>
+      ),
+      key: "pdf",
+    },
   ];
-
   useEffect(() => {
     getInvoice();
   }, []);
