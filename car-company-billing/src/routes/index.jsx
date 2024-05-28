@@ -10,6 +10,9 @@ import {
   CustomerWithoutOrders,
   Employee,
   Invoice,
+  SingleCar,
+  SingleCustomer,
+  SingleEmployee,
 } from "../pages";
 
 const Routes = () => {
@@ -31,12 +34,24 @@ const Routes = () => {
           element: <Employee />,
         },
         {
+          path: "/employee/:employeeId",
+          element: <SingleEmployee />,
+        },
+        {
           path: "/customer",
           element: <Customer />,
         },
         {
+          path: "/customer/:custId",
+          element: <SingleCustomer />,
+        },
+        {
           path: "/cars",
           element: <Car />,
+        },
+        {
+          path: "/car/:carId",
+          element: <SingleCar />,
         },
         {
           path: "/car-not-sold",

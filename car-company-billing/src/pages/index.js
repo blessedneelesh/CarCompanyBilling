@@ -7,3 +7,6 @@ export { CarNotSold } from "./CarNotSold";
 export { CustomerWithOrders } from "./CustomerWithOrders";
 export { CustomerWithoutOrders } from "./CustomerWithoutOrders";
 export { CustomerTop } from "./CustomerTop";
+export { SingleEmployee } from "./SingleEmployee";
+export { SingleCustomer } from "./SingleCustomer";
+export { SingleCar } from "./SingleCar";

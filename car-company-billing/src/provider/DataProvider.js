@@ -19,7 +19,18 @@ export default function DataProvider({ children }) {
 
   const getEmployees = async () => {
     try {
-      var response = await Axios.get(API_URL + "Employee");
+      var response = await Axios.get(API_URL + "Employee/GetAllEmployees");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getSingleEmployee = async (employeeId) => {
+    try {
+      var response = await Axios.get(
+        API_URL + "Employee/GetEmployeeById?employeeId=" + employeeId
+      );
       return response.data;
     } catch (e) {
       console.log(e);
@@ -29,6 +40,17 @@ export default function DataProvider({ children }) {
   const getCustomer = async () => {
     try {
       var response = await Axios.get(API_URL + "Customer/GetCustomer");
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getSingleCustomer = async (custId) => {
+    try {
+      var response = await Axios.get(
+        API_URL + "Customer/GetCustomerById?custId=" + custId
+      );
       return response.data;
     } catch (e) {
       console.log(e);
@@ -75,6 +97,15 @@ export default function DataProvider({ children }) {
     }
   };
 
+  const getSingleCar = async (carId) => {
+    try {
+      var response = await Axios.get(API_URL + "Car/GetCarById?carId=" + carId);
+      return response.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const getCarInventory = async () => {
     try {
       var response = await Axios.get(API_URL + "Car/GetCarInventory");
@@ -96,11 +127,14 @@ export default function DataProvider({ children }) {
   const value = {
     getSalesInvoice,
     getEmployees,
+    getSingleEmployee,
     getCustomer,
+    getSingleCustomer,
     getCustomerOrdersWithOrders,
     getCustomerWithoutOrders,
     getTopCustomer,
     getCars,
+    getSingleCar,
     getCarInventory,
     getCarNotSold,
   };

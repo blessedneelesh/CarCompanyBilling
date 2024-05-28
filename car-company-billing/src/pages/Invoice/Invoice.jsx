@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table, Button } from "antd";
+import { Link } from "react-router-dom";
 const Invoice = () => {
   const [invoices, setInvoices] = useState("");
 
@@ -39,16 +40,37 @@ const Invoice = () => {
       key: "vin_number",
     },
     {
+      title: "Car Id",
+      render: (rec) => (
+        <>
+          <Link to={"/car/" + rec.car_id}>{rec.car_id}</Link>
+        </>
+      ),
+      key: "car_id",
+    },
+    {
       title: "SalesPerson Id",
-      dataIndex: "salesperson_id",
+      // dataIndex: "salesperson_id",
+      render: (rec) => (
+        <>
+          <Link to={"/employee/" + rec.salesperson_id}>
+            {rec.salesperson_id}
+          </Link>
+        </>
+      ),
       key: "salesperson_id",
     },
     {
       title: "Customer Id",
-      dataIndex: "customer_id",
+      render: (rec) => (
+        <>
+          <Link to={"/customer/" + rec.customer_id}>{rec.customer_id}</Link>
+        </>
+      ),
       key: "customer_id",
     },
   ];
+
   useEffect(() => {
     getInvoice();
   }, []);
