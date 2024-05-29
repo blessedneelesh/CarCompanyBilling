@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table, Button } from "antd";
+import { Spinner } from "../../components";
 
 const Customer = () => {
   const [customer, setCustomer] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCustomer } = useData();
 
@@ -43,7 +45,16 @@ const Customer = () => {
   useEffect(() => {
     getCustomers();
   }, []);
-  return <> {customer && <Table dataSource={customer} columns={columns} />}</>;
+  return (
+    <>
+      {" "}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Table dataSource={customer} columns={columns} />
+      )}
+    </>
+  );
 };
 
 export default Customer;

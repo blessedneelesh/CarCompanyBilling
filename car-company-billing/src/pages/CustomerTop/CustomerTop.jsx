@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
+import { PDFViewer } from "@react-pdf/renderer";
+import { PDFFile } from "../../components";
 
 const CustomerTop = () => {
   const [topCustomer, setTopCustomer] = useState("");
@@ -37,7 +39,13 @@ const CustomerTop = () => {
   }, []);
 
   return (
-    <> {topCustomer && <Table dataSource={topCustomer} columns={columns} />}</>
+    <>
+      {" "}
+      {topCustomer && <Table dataSource={topCustomer} columns={columns} />}
+      {/* <PDFViewer>
+        <PDFFile />
+      </PDFViewer> */}
+    </>
   );
 };
 

@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
-import { Table, Button } from "antd";
+import { Table, Button, Spin } from "antd";
+import { Spinner } from "../../components";
 
 const Employee = () => {
   const [employees, setEmployees] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getEmployees } = useData();
 
   const getEmployee = async () => {
+    setIsLoading(true);
     var lst = await getEmployees();
     setEmployees(lst);
+    setIsLoading(false);
     console.log(employees, "invoices", lst);
   };
 
@@ -59,7 +63,14 @@ const Employee = () => {
     getEmployee();
   }, []);
   return (
-    <> {employees && <Table dataSource={employees} columns={columns} />}</>
+    <>
+      {" "}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <Table dataSource={employees} columns={columns} />
+      )}
+    </>
   );
 };
 
