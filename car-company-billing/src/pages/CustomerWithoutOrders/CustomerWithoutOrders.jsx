@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
+import { Spinner } from "../../components";
 
 const CustomerWithoutOrders = () => {
   const [customerWithoutOrders, setCustomerWithoutOrders] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCustomerWithoutOrders } = useData();
 
   const CustomerOrdersWithOrders = async () => {
+    setIsLoading(true);
     var lst = await getCustomerWithoutOrders();
     setCustomerWithoutOrders(lst);
+    setIsLoading(false);
     console.log(lst, "invoices", lst);
   };
 
@@ -40,7 +44,7 @@ const CustomerWithoutOrders = () => {
       key: "zip",
     },
   ];
-  
+
   useEffect(() => {
     CustomerOrdersWithOrders();
   }, []);
@@ -48,8 +52,12 @@ const CustomerWithoutOrders = () => {
   return (
     <>
       {" "}
-      {customerWithoutOrders && (
-        <Table dataSource={customerWithoutOrders} columns={columns} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={customerWithoutOrders} columns={columns} />
+        </div>
       )}
     </>
   );

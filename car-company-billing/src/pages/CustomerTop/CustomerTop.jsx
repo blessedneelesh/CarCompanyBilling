@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
 import { PDFViewer } from "@react-pdf/renderer";
-import { PDFFile } from "../../components";
+import { PDFFile, Spinner } from "../../components";
 
 const CustomerTop = () => {
   const [topCustomer, setTopCustomer] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const { getTopCustomer } = useData();
 
   const getTopCustomers = async () => {
+    setIsLoading(true);
     var lst = await getTopCustomer();
     setTopCustomer(lst);
+    setIsLoading(false);
     console.log(lst, "invoices", lst);
   };
 
@@ -41,7 +43,13 @@ const CustomerTop = () => {
   return (
     <>
       {" "}
-      {topCustomer && <Table dataSource={topCustomer} columns={columns} />}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={topCustomer} columns={columns} />
+        </div>
+      )}
       {/* <PDFViewer>
         <PDFFile />
       </PDFViewer> */}

@@ -1,6 +1,13 @@
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 import Html from "react-pdf-html";
-
+import logo from "../../logo.JPG";
 const styles = StyleSheet.create({
   page: {
     padding: 20,
@@ -14,12 +21,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "gray",
   },
+  image: {
+    height: 20,
+    width: 20,
+  },
 });
 
 const PDFFile = ({ invoice, capitalizeWords }) => {
   return (
     <>
-      {" "}
+      <img src={logo} alt="img" />{" "}
       <Document style={styles.page}>
         <Page style={styles.page}>
           <Html>
@@ -27,8 +38,14 @@ const PDFFile = ({ invoice, capitalizeWords }) => {
               <html>
               <body style="padding:10px">
                 <div>
-                 <div style="font-size: 22px; margin-bottom:10px">
-                             Invoice #${invoice.invoice_id}
+                 <div style="font-size: 18px; margin-bottom:10px; display:flex; flex-direction:row-reverse; justify-content:space-between">
+                    <div>
+                    Price Detail <br> 
+                    #${invoice.invoice_id}
+                    </div>
+                    <div style="height:70px; width:70px">
+                    <img src=${logo} />
+                    </div>
                  </div>
                      <div
                         style="display: flex; flex-direction: row;
@@ -67,7 +84,7 @@ const PDFFile = ({ invoice, capitalizeWords }) => {
                                <div style="font-size: 10px" >Customer Id: ${
                                  invoice.customer_id
                                }</div>
-                               <div style="font-size: 1px">Car Id: ${
+                               <div style="font-size: 10px">Car Id: ${
                                  invoice.car_id
                                }</div>
                              </div>

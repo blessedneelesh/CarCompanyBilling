@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
+import { Spinner } from "../../components";
 
 const CarNotSold = () => {
   const [carNotSold, setCarNotSold] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCarNotSold } = useData();
 
   const CarNotSold = async () => {
+    setIsLoading(true);
     var lst = await getCarNotSold();
     setCarNotSold(lst);
+    setIsLoading(false);
     console.log(lst, "invoices", lst);
   };
 
@@ -65,7 +69,16 @@ const CarNotSold = () => {
     CarNotSold();
   }, []);
   return (
-    <> {carNotSold && <Table dataSource={carNotSold} columns={columns} />}</>
+    <>
+      {" "}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={carNotSold} columns={columns} />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -10,6 +10,7 @@ import {
   CustomerWithoutOrders,
   Employee,
   Invoice,
+  InvoiceInsert,
   SingleCar,
   SingleCustomer,
   SingleEmployee,
@@ -30,6 +31,10 @@ const Routes = () => {
           element: <Invoice />,
         },
         {
+          path: "/invoice/create",
+          element: <InvoiceInsert />,
+        },
+        {
           path: "/employee",
           element: <Employee />,
         },
@@ -37,6 +42,7 @@ const Routes = () => {
           path: "/employee/:employeeId",
           element: <SingleEmployee />,
         },
+
         {
           path: "/customer",
           element: <Customer />,

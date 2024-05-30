@@ -17,6 +17,17 @@ const Employee = () => {
     console.log(employees, "invoices", lst);
   };
 
+  function capitalizeFirstLetter(str) {
+    return str[0].toUpperCase() + str.slice(1);
+  }
+
+  function capitalizeWords(sentence) {
+    const words = sentence.split(" ");
+    const capitalizedWords = words.map((word) => capitalizeFirstLetter(word));
+    const reassembed = capitalizedWords.join(" ");
+    return reassembed;
+  }
+
   const columns = [
     {
       title: "Employee Id",
@@ -26,7 +37,15 @@ const Employee = () => {
     {
       title: "Name",
       key: "name",
-      render: (rec) => <>{rec.firstName + " " + rec.lastName}</>,
+      render: (rec) => (
+        <>
+          {rec.firstName.charAt(0).toUpperCase() +
+            rec.firstName.slice(1) +
+            " " +
+            rec.lastName.charAt(0).toUpperCase() +
+            rec.lastName.slice(1)}
+        </>
+      ),
     },
     {
       title: "Birthday",
@@ -68,7 +87,9 @@ const Employee = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <Table dataSource={employees} columns={columns} />
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={employees} columns={columns} loading={isLoading} />
+        </div>
       )}
     </>
   );

@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
+import { Spinner } from "../../components";
 
 const CarInventory = () => {
   const [inventory, setInventory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCarInventory } = useData();
 
   const carInventory = async () => {
+    setIsLoading(true);
     var lst = await getCarInventory();
     setInventory(lst);
+    setIsLoading(false);
     console.log(lst, "invoices", lst);
   };
 
@@ -50,7 +54,16 @@ const CarInventory = () => {
     carInventory();
   }, []);
   return (
-    <> {inventory && <Table dataSource={inventory} columns={columns} />}</>
+    <>
+      {" "}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={inventory} columns={columns} />
+        </div>
+      )}
+    </>
   );
 };
 

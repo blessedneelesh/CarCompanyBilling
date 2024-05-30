@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table, Button, Spin } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { DownloadOutlined } from "@ant-design/icons";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import { PDFFile, Spinner } from "../../components";
@@ -11,12 +11,18 @@ const Invoice = () => {
 
   const { getSalesInvoice } = useData();
 
+  const navigate = useNavigate();
+
   const getInvoice = async () => {
     setIsLoading(true);
     var lst = await getSalesInvoice();
     setInvoices(lst);
     setIsLoading(false);
     console.log(invoices, "invoices", lst);
+  };
+
+  const onClickCreate = () => {
+    navigate("/invoice/create");
   };
 
   function capitalizeFirstLetter(str) {
@@ -92,7 +98,12 @@ const Invoice = () => {
       title: "PDF",
       render: (rec) => (
         <>
-          <Button type="primary" icon={<DownloadOutlined />} size="small">
+          <Button
+            type="primary"
+            icon={<DownloadOutlined />}
+            loading={isLoading}
+            size="small"
+          >
             <PDFDownloadLink
               document={
                 <PDFFile invoice={rec} capitalizeWords={capitalizeWords} />
@@ -111,12 +122,16 @@ const Invoice = () => {
     getInvoice();
   }, []);
   return (
-    <div>
-      <Button type="primary">Create</Button>
+    <div style={{ padding: "10px" }}>
+      <Button type="primary" onClick={() => onClickCreate()}>
+        Create
+      </Button>
       {isLoading ? (
         <Spinner />
       ) : (
-        <Table dataSource={invoices} columns={columns} loading={isLoading} />
+        <div style={{ marginTop: "10px" }}>
+          <Table dataSource={invoices} columns={columns} loading={isLoading} />
+        </div>
       )}
     </div>
   );

@@ -24,7 +24,16 @@ const Customer = () => {
     {
       title: "Name",
       key: "name",
-      render: (rec) => <>{rec.firstName + " " + rec.lastName}</>,
+      render: (rec) => (
+        <>
+          {" "}
+          {rec.firstName.charAt(0).toUpperCase() +
+            rec.firstName.slice(1) +
+            " " +
+            rec.lastName.charAt(0).toUpperCase() +
+            rec.lastName.slice(1)}
+        </>
+      ),
     },
     {
       title: "Address",
@@ -51,7 +60,9 @@ const Customer = () => {
       {isLoading ? (
         <Spinner />
       ) : (
-        <Table dataSource={customer} columns={columns} />
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={customer} columns={columns} loading={isLoading} />
+        </div>
       )}
     </>
   );

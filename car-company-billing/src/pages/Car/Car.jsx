@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table, Button } from "antd";
+import { Spinner } from "../../components";
 
 const Car = () => {
   const [cars, setCars] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCars } = useData();
   const getCar = async () => {
@@ -60,10 +62,37 @@ const Car = () => {
       key: "carLength",
     },
   ];
+
+  const createArr = () => {
+    cars &&
+      console.log(
+        cars.map((e) =>
+          Object.keys(e).forEach((key) => {
+            return {
+              value: key.carId,
+              label: key.make,
+            };
+          })
+        )
+      );
+  };
+
   useEffect(() => {
     getCar();
+    createArr();
   }, []);
-  return <> {cars && <Table dataSource={cars} columns={columns} />}</>;
+  return (
+    <>
+      {" "}
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={cars} columns={columns} loading={isLoading} />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Car;

@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "antd";
+import { Spinner } from "../../components";
 
 const SingleEmployee = () => {
   const [singleEmployee, setSingleEmployee] = useState("");
+
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getSingleEmployee } = useData();
 
@@ -13,8 +16,10 @@ const SingleEmployee = () => {
   const navigate = useNavigate();
 
   const getEmployee = async () => {
+    setIsLoading(true);
     var lst = await getSingleEmployee(employeeId);
     setSingleEmployee(lst);
+    setIsLoading(false);
     console.log(singleEmployee, "invoices", lst);
   };
 
@@ -29,25 +34,35 @@ const SingleEmployee = () => {
           Back
         </Button>
         <h3>Employee Detail</h3>
-        <div>
-          EmployeeId: {singleEmployee.employeeId} <br></br>
-          <br></br>
-          Name: {singleEmployee.firstName + " " + singleEmployee.lastName}{" "}
-          <br></br>
-          <br></br>
-          Social Security Number: {singleEmployee.socSecNo} <br></br>
-          <br></br>
-          Birth Date: {singleEmployee.birthDate} <br></br>
-          <br></br>
-          Salary: {singleEmployee.salary} <br></br>
-          <br></br>
-          bonus: {singleEmployee.bonus} <br></br>
-          <br></br>
-          Commission: {singleEmployee.commission} <br></br>
-          <br></br>
-          Hire Date: {singleEmployee.hireDate} <br></br>
-          <br></br>
-        </div>
+        {isLoading || !singleEmployee ? (
+          <Spinner />
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "7px",
+              margin: "5px",
+            }}
+          >
+            <div> EmployeeId: {singleEmployee.employeeId}</div>
+            <div>
+              Name:{" "}
+              {singleEmployee.firstName[0].toUpperCase() +
+                singleEmployee.firstName.slice(1) +
+                " " +
+                singleEmployee.lastName[0].toUpperCase() +
+                singleEmployee.lastName.slice(1)}
+            </div>
+
+            <div> Social Insurance Number: {singleEmployee.socSecNo}</div>
+            <div>Birth Date: {singleEmployee.birthDate} </div>
+            <div>Salary: {singleEmployee.salary}</div>
+            <div>bonus: {singleEmployee.bonus}</div>
+            <div>Commission: {singleEmployee.commission}</div>
+            <div> Hire Date: {singleEmployee.hireDate} </div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import { Table } from "antd";
+import { Spinner } from "../../components";
 
 const CustomerWithOrders = () => {
   const [customerWithOrders, setCustomerWithOrders] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const { getCustomerOrdersWithOrders } = useData();
 
   const CustomerOrdersWithOrders = async () => {
+    setIsLoading(true);
     var lst = await getCustomerOrdersWithOrders();
     setCustomerWithOrders(lst);
+    setIsLoading(false);
     console.log(lst, "invoices", lst);
   };
 
@@ -51,8 +55,12 @@ const CustomerWithOrders = () => {
   return (
     <>
       {" "}
-      {customerWithOrders && (
-        <Table dataSource={customerWithOrders} columns={columns} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <div style={{ padding: "10px" }}>
+          <Table dataSource={customerWithOrders} columns={columns} />
+        </div>
       )}
     </>
   );

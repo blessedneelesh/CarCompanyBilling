@@ -10,3 +10,4 @@ export { CustomerTop } from "./CustomerTop";
 export { SingleEmployee } from "./SingleEmployee";
 export { SingleCustomer } from "./SingleCustomer";
 export { SingleCar } from "./SingleCar";
+export { InvoiceInsert } from "./InvoiceInsert";
