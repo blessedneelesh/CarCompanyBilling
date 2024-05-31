@@ -116,7 +116,7 @@ const InvoiceForm = () => {
               ]}
             >
               <Select
-                defaultValue="Select"
+                placeholder="Select Car"
                 style={{
                   width: 200,
                 }}
@@ -142,7 +142,7 @@ const InvoiceForm = () => {
               ]}
             >
               <Select
-                defaultValue="Select"
+                placeholder="Select Salesperson"
                 style={{
                   width: 200,
                 }}
@@ -173,7 +173,7 @@ const InvoiceForm = () => {
               ]}
             >
               <Select
-                defaultValue="Select"
+                placeholder="Select Customer"
                 style={{
                   width: 200,
                 }}

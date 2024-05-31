@@ -56,14 +56,24 @@ const Customer = () => {
   }, []);
   return (
     <>
-      {" "}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div style={{ padding: "10px" }}>
-          <Table dataSource={customer} columns={columns} loading={isLoading} />
-        </div>
-      )}
+      <div style={{ margin: "5px" }}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div style={{ fontWeight: "600", fontSize: "18px" }}>
+              Customer Table
+            </div>
+            <div style={{ marginTop: "10px" }}>
+              <Table
+                dataSource={customer}
+                columns={columns}
+                loading={isLoading}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

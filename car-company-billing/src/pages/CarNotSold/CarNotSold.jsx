@@ -70,14 +70,21 @@ const CarNotSold = () => {
   }, []);
   return (
     <>
-      {" "}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div style={{ padding: "10px" }}>
-          <Table dataSource={carNotSold} columns={columns} />
-        </div>
-      )}
+      <div style={{ margin: "5px" }}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div style={{ fontWeight: "600", fontSize: "18px" }}>
+              Car NOT Sold Table
+            </div>
+
+            <div style={{ padding: "10px" }}>
+              <Table dataSource={carNotSold} columns={columns} />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

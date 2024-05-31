@@ -54,14 +54,20 @@ const CustomerWithOrders = () => {
   }, []);
   return (
     <>
-      {" "}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div style={{ padding: "10px" }}>
-          <Table dataSource={customerWithOrders} columns={columns} />
-        </div>
-      )}
+      <div style={{ margin: "5px" }}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div style={{ fontWeight: "600", fontSize: "18px" }}>
+              Customer Orders Table
+            </div>
+            <div style={{ padding: "10px" }}>
+              <Table dataSource={customerWithOrders} columns={columns} />
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

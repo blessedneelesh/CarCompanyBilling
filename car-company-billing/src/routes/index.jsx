@@ -15,6 +15,7 @@ import {
   SingleCustomer,
   SingleEmployee,
 } from "../pages";
+import { Layout } from "antd";
 
 const Routes = () => {
   const routesForPublic = [

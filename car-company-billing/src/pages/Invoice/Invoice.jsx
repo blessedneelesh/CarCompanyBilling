@@ -122,16 +122,34 @@ const Invoice = () => {
     getInvoice();
   }, []);
   return (
-    <div style={{ padding: "10px" }}>
-      <Button type="primary" onClick={() => onClickCreate()}>
-        Create
-      </Button>
+    <div style={{ margin: "5px" }}>
       {isLoading ? (
         <Spinner />
       ) : (
-        <div style={{ marginTop: "10px" }}>
-          <Table dataSource={invoices} columns={columns} loading={isLoading} />
-        </div>
+        <>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <div style={{ fontWeight: "600", fontSize: "18px" }}>
+              Invoice Table
+            </div>
+            <div>
+              <Button type="primary" onClick={() => onClickCreate()}>
+                Create
+              </Button>
+            </div>
+          </div>
+
+          <div style={{ marginTop: "5px" }}>
+            <Table
+              rowClassName={(record, index) =>
+                index % 2 === 0 ? "light" : "dark"
+              }
+              size="medium"
+              dataSource={invoices}
+              columns={columns}
+              loading={isLoading}
+            />
+          </div>
+        </>
       )}
     </div>
   );

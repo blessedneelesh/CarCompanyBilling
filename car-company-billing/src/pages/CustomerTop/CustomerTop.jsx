@@ -42,17 +42,23 @@ const CustomerTop = () => {
 
   return (
     <>
-      {" "}
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div style={{ padding: "10px" }}>
-          <Table dataSource={topCustomer} columns={columns} />
-        </div>
-      )}
-      {/* <PDFViewer>
+      <div style={{ margin: "5px" }}>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            <div style={{ fontWeight: "600", fontSize: "18px" }}>
+              Top Customer Table
+            </div>
+            <div style={{ padding: "10px" }}>
+              <Table dataSource={topCustomer} columns={columns} />
+            </div>
+          </>
+        )}
+        {/* <PDFViewer>
         <PDFFile />
       </PDFViewer> */}
+      </div>
     </>
   );
 };
