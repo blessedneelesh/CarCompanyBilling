@@ -6,9 +6,9 @@
         public string FirstName { get; set; }
         public string MiddleInitial { get; set; }
         public string LastName { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public string? BirthDate { get; set; }
         public decimal SocSecNo { get; set; }
-        public DateTime HireDate { get; set; }
+        public string HireDate { get; set; }
         public decimal? WorkDeptId { get; set; }
         public decimal? JobId { get; set; }
         public decimal? Salary { get; set; }

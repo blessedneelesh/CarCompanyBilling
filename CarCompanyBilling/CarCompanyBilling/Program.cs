@@ -23,6 +23,8 @@ builder.Services.AddDbContext<CarCompanyBillingContext>(options =>
 
 builder.Services.AddScoped<SalesInvoiceDoa>();
 builder.Services.AddScoped<EmployeeDoa>();
+builder.Services.AddScoped<CustomerDoa>();
+builder.Services.AddScoped<CarDoa>();
 
 var app = builder.Build();
 
@@ -35,7 +37,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+
 app.UseAuthorization();
+
+app.UseCors(builder => builder
+       .AllowAnyHeader()
+       .AllowAnyMethod()
+       .AllowAnyOrigin()
+    );
 
 app.MapControllers();
 

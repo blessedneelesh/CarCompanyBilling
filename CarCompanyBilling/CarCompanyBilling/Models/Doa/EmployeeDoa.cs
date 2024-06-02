@@ -17,9 +17,9 @@ namespace CarCompanyBilling.Models.Doa
                 FirstName = n.FirstName,
                 LastName = n.LastName,
                 MiddleInitial=n.MiddleInitial,
-                BirthDate =n.BirthDate,
+                BirthDate =n.BirthDate.ToString(),
                 SocSecNo =n.SocSecNo,
-                HireDate =n.HireDate,
+                HireDate =n.HireDate.ToShortDateString(),
                 WorkDeptId =n.WorkDeptId,
                 JobId =n.JobId,
                 Salary =n.Salary,
@@ -29,6 +29,25 @@ namespace CarCompanyBilling.Models.Doa
             }).ToList();
 
             return EmployeeLst;
+        }
+
+        public EmployeeDTO getEmployeeById(int employeeId)
+        {
+            return _billingContext.Employees.Where(e => e.EmployeeId == employeeId).Select(n => new EmployeeDTO
+            {
+                EmployeeId = n.EmployeeId,
+                FirstName = n.FirstName,
+                LastName = n.LastName,
+                MiddleInitial = n.MiddleInitial,
+                BirthDate = n.BirthDate.ToString(),
+                SocSecNo = n.SocSecNo,
+                HireDate = n.HireDate.ToShortDateString(),
+                WorkDeptId = n.WorkDeptId,
+                JobId = n.JobId,
+                Salary = n.Salary,
+                Bonus = n.Bonus,
+                Commission = n.Commission
+            }).FirstOrDefault();
         }
     }
 }
