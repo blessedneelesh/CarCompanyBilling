@@ -1,4 +1,12 @@
-import { Button, DatePicker, Form, Input, InputNumber, Select } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Input,
+  InputNumber,
+  message,
+  Select,
+} from "antd";
 import { useEffect, useState } from "react";
 import { useData } from "../../provider/DataProvider";
 import moment from "moment";
@@ -8,8 +16,24 @@ const InvoiceForm = () => {
   const [car, setCar] = useState("");
   const [employee, setEmployee] = useState("");
   const [customer, setCustomer] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { getEmployees, getCustomer, getCars } = useData("");
+  const [date, setDate] = useState("");
+  const [carId, setCarId] = useState("");
+  const [customerId, setCustomerId] = useState("");
+  const [employeeId, setEmployeeId] = useState("");
+  const [vin, setVin] = useState("");
+  const [price, setPrice] = useState("");
+  const [onRoadPrice, setOnRoadPrice] = useState("");
+
+  const onDateChange = (date, dateString) => {
+    setDate(dateString);
+  };
+
+  const [form] = Form.useForm();
+
+  const { getEmployees, getCustomer, getCars, insertSalesInvoice } =
+    useData("");
 
   const formItemLayout = {
     labelCol: {
@@ -50,6 +74,23 @@ const InvoiceForm = () => {
     console.log(customer);
   };
 
+  const createSalesInvoice = async (data) => {
+    setIsLoading(true);
+
+    let res = await insertSalesInvoice(data);
+
+    setIsLoading(false);
+    console.log(res);
+    if (res.status == 201) {
+      message.success("Successfully created!");
+      form.resetFields();
+    } else if (res.status == 400) {
+      message.error("Duplicate VIN number!");
+    } else {
+      message.error("Cannot create invoice! Try Again");
+    }
+  };
+
   const disabledDate = (current) => {
     // Can not select days before today and today
     return (
@@ -60,6 +101,16 @@ const InvoiceForm = () => {
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    var obj = {
+      date: date,
+      price: price,
+      vinNumber: vin,
+      onRoadPrice: onRoadPrice,
+      carId: carId,
+      customerId: customerId,
+      salespersonId: employeeId,
+    };
+    createSalesInvoice(obj);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -79,6 +130,7 @@ const InvoiceForm = () => {
         </Button>
 
         <Form
+          form={form}
           {...formItemLayout}
           style={{
             maxWidth: 1000,
@@ -97,6 +149,7 @@ const InvoiceForm = () => {
             ]}
           >
             <DatePicker
+              onChange={onDateChange}
               disabledDate={disabledDate}
               style={{
                 width: 200,
@@ -120,6 +173,7 @@ const InvoiceForm = () => {
                 style={{
                   width: 200,
                 }}
+                onChange={(value) => setCarId(value)}
               >
                 {car.map((c) => (
                   <Select.Option value={c.carId}>
@@ -142,6 +196,7 @@ const InvoiceForm = () => {
               ]}
             >
               <Select
+                onChange={(value) => setEmployeeId(value)}
                 placeholder="Select Salesperson"
                 style={{
                   width: 200,
@@ -173,6 +228,7 @@ const InvoiceForm = () => {
               ]}
             >
               <Select
+                onChange={(value) => setCustomerId(value)}
                 placeholder="Select Customer"
                 style={{
                   width: 200,
@@ -200,9 +256,9 @@ const InvoiceForm = () => {
                 message: "Please input!",
               },
               {
-                pattern: /^[A-Z0-9]{13}$/,
+                pattern: /^[A-Z0-9]{17}$/,
                 message:
-                  "Please enter 13 character (digits and Capital letters) VIN number.",
+                  "Please enter 17 character (digits and Capital letters) VIN number.",
               },
             ]}
           >
@@ -210,6 +266,8 @@ const InvoiceForm = () => {
               style={{
                 width: 200,
               }}
+              value={vin}
+              onChange={(e) => setVin(e.target.value)}
             />
           </Form.Item>
 
@@ -227,6 +285,7 @@ const InvoiceForm = () => {
               style={{
                 width: 200,
               }}
+              onChange={(value) => setPrice(value)}
             />
           </Form.Item>
 
@@ -258,6 +317,7 @@ const InvoiceForm = () => {
             ]}
           >
             <InputNumber
+              onChange={(value) => setOnRoadPrice(value)}
               style={{
                 width: 200,
               }}
@@ -270,7 +330,7 @@ const InvoiceForm = () => {
               span: 20,
             }}
           >
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={isLoading}>
               Submit
             </Button>
           </Form.Item>

@@ -48,7 +48,7 @@ namespace CarCompanyBilling.Models.Doa
                                       salesperson_id = si.SalespersonId,
                                       salesperson_name=e.FirstName + " " +e.LastName,
                                       vin_number = si.VinNumber
-                                  }).ToList();
+                                  }).OrderByDescending(x => x.invoice_id).ToList();
 
             return salesInvoiceLst;
         }

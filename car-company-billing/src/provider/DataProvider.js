@@ -17,6 +17,16 @@ export default function DataProvider({ children }) {
     }
   };
 
+  const insertSalesInvoice = async (invoiceData) => {
+    try {
+      var response = await Axios.post(API_URL + "SalesInvoice", invoiceData);
+      return response;
+    } catch (e) {
+      console.log(e);
+      return e.response;
+    }
+  };
+
   const getEmployees = async () => {
     try {
       var response = await Axios.get(API_URL + "Employee/GetAllEmployees");
@@ -126,6 +136,7 @@ export default function DataProvider({ children }) {
 
   const value = {
     getSalesInvoice,
+    insertSalesInvoice,
     getEmployees,
     getSingleEmployee,
     getCustomer,
